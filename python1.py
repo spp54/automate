@@ -1,20 +1,23 @@
 import getpass
-import sys
 import telnetlib
 
-HOST = "localhost"
-user = raw_input("Enter your remote account: ")
+HOST = "192.168.122.71"
+user = input("Enter your telnet username : ")
 password = getpass.getpass()
 
 tn = telnetlib.Telnet(HOST)
 
-tn.read_until("login: ")
-tn.write(user + "\n")
+tn.read_until(b"Username: ")
+tn.write(user.encode('ascii') + b"\n")
 if password:
-    tn.read_until("Password: ")
-    tn.write(password + "\n")
+    tn.read_until(b"Password: ")
+    tn.write(password.encode('ascii') + b"\n")
 
-tn.write("ls\n")
-tn.write("exit\n")
-
-print tn.read_all() 
+tn.write(b"enable\n")
+tn.write(b"cisco\n")
+tn.write(b"conf t\n")
+tn.write(b"int loop 10\n")
+tn.write(b"ip add 1.1.1.1 255.255.255.0\n")
+tn.write(b"end\n")
+tn.write(b"exit\n")
+print tn.read_all().decode('ascii')
