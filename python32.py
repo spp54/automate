@@ -1,7 +1,9 @@
+#This is a simple python script that creates a vlan on a switch
+#This script demonstrates the ease with which devices can be accessed.
 import getpass
 import telnetlib
 
-HOST = "192.168.122.80"
+HOST = "192.168.122.80" #switch IP
 user = input("Enter your telnet username : ")
 password = getpass.getpass()
 
