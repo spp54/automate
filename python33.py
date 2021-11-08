@@ -20,7 +20,7 @@ for adds in f:
     tn.write(b"enable\n")
     tn.write(b"conf t\n")
     tn.write(b"vlan 20\n")
-    n.write(b"name twenty\n")
+    tn.write(b"name twenty\n")
     tn.write(b"vlan 30\n")
     tn.write(b"name thirty\n")
     tn.write(b"vlan 40\n")
